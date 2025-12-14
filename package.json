@@ -1,0 +1,19 @@
+{
+  "name": "bandella-looty-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^7.10.1",
+    "vite": "^4.0.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}

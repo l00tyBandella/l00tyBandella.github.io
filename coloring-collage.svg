@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ffd6e8" />
+      <stop offset="100%" stop-color="#e6f3ff" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g2)" />
+  <g transform="translate(30,20)">
+    <path d="M20 160 Q120 60 220 140 T420 150" stroke="#6C63FF" stroke-width="16" fill="transparent" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="80" cy="80" r="38" fill="#f08" opacity="0.9" />
+    <rect x="340" y="40" rx="16" ry="16" width="160" height="220" fill="#fff" opacity="0.9" />
+    <text x="420" y="170" font-size="18" text-anchor="middle" fill="#d74">Sample Pages</text>
+  </g>
+</svg>

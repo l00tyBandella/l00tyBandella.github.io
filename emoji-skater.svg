@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="100%" height="100%" fill="#fff0ff" rx="20" />
+  <g transform="translate(24,20)">
+    <circle cx="48" cy="48" r="40" fill="#FFDFD8" stroke="#E06AA0" stroke-width="4" />
+    <rect x="80" y="100" width="52" height="28" rx="8" fill="#6C63FF" />
+    <path d="M20 140 L36 120 L56 140" stroke="#333" stroke-width="4" fill="none" />
+    <text x="100" y="180" font-size="12" fill="#6C63FF">Skate</text>
+  </g>
+</svg>
