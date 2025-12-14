@@ -21,65 +21,65 @@ import Checkout from './Checkout';
 import Admin from './Admin';
 
 function About(){
-  return (
-    <section style={{ background: '#fff0fa', borderRadius: '1rem', padding: '2rem', margin: '2rem 0', boxShadow: '0 2px 12px rgba(200, 100, 180, 0.08)' }}>
-      <h2 style={{ color: '#c2185b', fontWeight: 700 }}>About Bandella Looty</h2>
-      <p style={{ color: '#7b1fa2', fontSize: '1.1rem', marginBottom: '1rem' }}>
-        Welcome to Bandella Looty! This is a demo homepage for a dropshipping and content creation site. All products and images are placeholders. Explore the sections below for examples.
-      </p>
-    </section>
-  );
+	return (
+		<section style={{ background: '#fff0fa', borderRadius: '1rem', padding: '2rem', margin: '2rem 0', boxShadow: '0 2px 12px rgba(200, 100, 180, 0.08)' }}>
+			<h2 style={{ color: '#c2185b', fontWeight: 700 }}>About Bandella Looty</h2>
+			<p style={{ color: '#7b1fa2', fontSize: '1.1rem', marginBottom: '1rem' }}>
+				Welcome to Bandella Looty! This is a demo homepage for a dropshipping and content creation site. All products and images are placeholders. Explore the sections below for examples.
+			</p>
+		</section>
+	);
 }
 
 export default function App(){
-  const backgroundUrl = '/background.jpg';
+	const backgroundUrl = '/background.jpg';
 
-  return (
-    <Router>
-      <div style={{ position: 'relative', minHeight: '100vh', width: '100%' }}>
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, backgroundImage: `url(${backgroundUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', opacity: 1 }} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <Navbar />
-          <main style={{ padding: '2rem' }}>
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <HeroBanner />
-                  <FeaturedProductsCarousel items={products.slice(0, 6)} />
-                  <NewsletterCTA />
-                  <Testimonials />
-                </>
-              } />
-              <Route path="/suppliers" element={<Suppliers />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/coloring-books" element={<ColoringBooks books={products.filter(p => p.pages)} />} />
-              <Route path="/products" element={<Products products={products} />} />
-              <Route path="/clothing" element={<Clothing />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/posters" element={<Posters />} />
-              <Route path="/images" element={<Images />} />
-              <Route path="/print-on-demand" element={<PrintOnDemand />} />
-              <Route path="/shipping" element={<Shipping />} />
-              <Route path="/checkout" element={<Checkout />} />
-			  <Route path="/admin" element={<Admin />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/order-success" element={<div className="container"><h2>Thanks — order placed</h2><p>Your order has been recorded.</p></div>} />
-            </Routes>
-          </main>
-          <footer className="footer-dark py-3 mt-4">
-            <div className="container text-center">
-              <div className="mb-2">
-                <a href="#" className="text-decoration-none text-pink me-3"><i className="bi bi-instagram"></i> Instagram</a>
-                <a href="#" className="text-decoration-none text-pink me-3"><i className="bi bi-music-note-beamed"></i> TikTok</a>
-                <a href="#" className="text-decoration-none text-pink"><i className="bi bi-envelope"></i> Contact</a>
-              </div>
-              <div style={{ color: '#fff', opacity: 0.85 }}>&copy; {new Date().getFullYear()} Bandella Looty Demo. All rights reserved.</div>
-            </div>
-          </footer>
-        </div>
-      </div>
-    </Router>
-  );
+	return (
+		<Router>
+			<div style={{ position: 'relative', minHeight: '100vh', width: '100%' }}>
+				<div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, backgroundImage: `url(${backgroundUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', opacity: 1 }} />
+				<div style={{ position: 'relative', zIndex: 1 }}>
+					<Navbar />
+					<main style={{ padding: '2rem' }}>
+						<Routes>
+							<Route path="/" element={
+								<>
+									<HeroBanner />
+									<FeaturedProductsCarousel items={products.slice(0, 6)} />
+									<NewsletterCTA />
+									<Testimonials />
+								</>
+							} />
+							<Route path="/suppliers" element={<Suppliers />} />
+							<Route path="/about" element={<About />} />
+							<Route path="/coloring-books" element={<ColoringBooks books={products.filter(p => p.pages)} />} />
+							<Route path="/products" element={<Products products={products} />} />
+							<Route path="/clothing" element={<Clothing />} />
+							<Route path="/events" element={<Events />} />
+							<Route path="/posters" element={<Posters />} />
+							<Route path="/images" element={<Images />} />
+							<Route path="/print-on-demand" element={<PrintOnDemand />} />
+							<Route path="/shipping" element={<Shipping />} />
+							<Route path="/checkout" element={<Checkout />} />
+							<Route path="/admin" element={<Admin />} />
+							<Route path="/cart" element={<Cart />} />
+							<Route path="/order-success" element={<div className="container"><h2>Thanks — order placed</h2><p>Your order has been recorded.</p></div>} />
+						</Routes>
+					</main>
+					<footer className="footer-dark py-3 mt-4">
+						<div className="container text-center">
+							<div className="mb-2">
+								<a href="#" className="text-decoration-none text-pink me-3"><i className="bi bi-instagram"></i> Instagram</a>
+								<a href="#" className="text-decoration-none text-pink me-3"><i className="bi bi-music-note-beamed"></i> TikTok</a>
+								<a href="#" className="text-decoration-none text-pink"><i className="bi bi-envelope"></i> Contact</a>
+							</div>
+							<div style={{ color: '#fff', opacity: 0.85 }}>&copy; {new Date().getFullYear()} Bandella Looty Demo. All rights reserved.</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</Router>
+	);
 }
 							title: 'Joke Queens',
 							description: `A 22-page laugh-fest with the queens of comedy!\n\nJokes inside:\n- Why did the girl sit on the clock? She wanted to be on time!\n- What’s a queen’s favorite color? Royal blue!\n- Why did she bring a ladder to the comedy club? For the stand-up!`,
