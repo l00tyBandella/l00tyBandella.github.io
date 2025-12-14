@@ -1,86 +1,211 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-import ColoringBooks from './ColoringBooks';
-import Suppliers from './Suppliers';
-import Navbar from './Navbar';
-import HeroBanner from './HeroBanner';
-import FeaturedProductsCarousel from './FeaturedProductsCarousel';
-import NewsletterCTA from './NewsletterCTA';
-import Testimonials from './Testimonials';
-import Products from './Products';
-import Cart from './Cart';
-import products from './productsData';
-import Events from './Events';
-import Clothing from './Clothing';
-import Posters from './Posters';
-import Images from './Images';
-import PrintOnDemand from './PrintOnDemand';
-import Shipping from './Shipping';
-import Checkout from './Checkout';
-import Admin from './Admin';
+import ColoringBooks from './pages/ColoringBooks';
+import Suppliers from './pages/Suppliers';
+// CityMap component removed for l00ty ecommerce focus
+import Navbar from './components/Navbar';
+import HeroBanner from './components/HeroBanner';
+import FeaturedProductsCarousel from './components/FeaturedProductsCarousel';
+import NewsletterCTA from './components/NewsletterCTA';
+import Testimonials from './components/Testimonials';
+import ProductFilters from './components/ProductFilters';
 
-function About(){
-  return (
-    <section style={{ background: '#fff0fa', borderRadius: '1rem', padding: '2rem', margin: '2rem 0', boxShadow: '0 2px 12px rgba(200, 100, 180, 0.08)' }}>
-      <h2 style={{ color: '#c2185b', fontWeight: 700 }}>About Bandella Looty</h2>
-      <p style={{ color: '#7b1fa2', fontSize: '1.1rem', marginBottom: '1rem' }}>
-        Welcome to Bandella Looty! This is a demo homepage for a dropshipping and content creation site. All products and images are placeholders. Explore the sections below for examples.
-      </p>
-    </section>
-  );
+function ProductCard({ title, description, price, image, imageAlt, category }) {
+	const [filter, setFilter] = useState('all');
+	const categories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
+
+	const visibleProducts = products.filter(p => {
+		if(filter === 'all') return true;
+		return p.category === filter;
+	});
+
+	return (
+		<div className="card card-pink mb-3 text-center" style={{ width: 260 }}>
+			<div style={{ width: 100, height: 100, margin: '1rem auto', background: '#f8bbd0', borderRadius: '50%', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent:'center' }}>
+				<img src={image} alt={imageAlt || title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+			</div>
+			<div className="card-body">
+				<h5 className="card-title" style={{ color: 'var(--primary)', fontWeight: 700 }}>{title} {category && <span className="badge bg-secondary ms-2" style={{ background: 'var(--primary)' }}>{category}</span>}</h5>
+				<p className="card-text" style={{ color: 'var(--secondary)' }}>{description}</p>
+				<div className="d-flex justify-content-between align-items-center mt-3">
+					<strong style={{ color: '#ad1457' }}>{price}</strong>
+					<button className="btn btn-sm btn-pink">Buy</button>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default function App(){
-  const backgroundUrl = '/background.jpg';
-
-  return (
-    <Router>
-      <div style={{ position: 'relative', minHeight: '100vh', width: '100%' }}>
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, backgroundImage: `url(${backgroundUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', opacity: 1 }} />
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <Navbar />
-          <main style={{ padding: '2rem' }}>
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <HeroBanner />
-                  <FeaturedProductsCarousel items={products.slice(0, 6)} />
-                  <NewsletterCTA />
-                  <Testimonials />
-                </>
-              } />
-              <Route path="/suppliers" element={<Suppliers />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/coloring-books" element={<ColoringBooks books={products.filter(p => p.pages)} />} />
-              <Route path="/products" element={<Products products={products} />} />
-              <Route path="/clothing" element={<Clothing />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/posters" element={<Posters />} />
-              <Route path="/images" element={<Images />} />
-              <Route path="/print-on-demand" element={<PrintOnDemand />} />
-              <Route path="/shipping" element={<Shipping />} />
-              <Route path="/checkout" element={<Checkout />} />
-			  <Route path="/admin" element={<Admin />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/order-success" element={<div className="container"><h2>Thanks — order placed</h2><p>Your order has been recorded.</p></div>} />
-            </Routes>
-          </main>
-          <footer className="footer-dark py-3 mt-4">
-            <div className="container text-center">
-              <div className="mb-2">
-                <a href="#" className="text-decoration-none text-pink me-3"><i className="bi bi-instagram"></i> Instagram</a>
-                <a href="#" className="text-decoration-none text-pink me-3"><i className="bi bi-music-note-beamed"></i> TikTok</a>
-                <a href="#" className="text-decoration-none text-pink"><i className="bi bi-envelope"></i> Contact</a>
-              </div>
-              <div style={{ color: '#fff', opacity: 0.85 }}>&copy; {new Date().getFullYear()} Bandella Looty Demo. All rights reserved.</div>
-            </div>
-          </footer>
-        </div>
-      </div>
-    </Router>
-  );
+function About() {
+	return (
+		<section style={{ background: '#fff0fa', borderRadius: '1rem', padding: '2rem', margin: '2rem 0', boxShadow: '0 2px 12px rgba(200, 100, 180, 0.08)' }}>
+			<h2 style={{ color: '#c2185b', fontWeight: 700 }}>About Bandella Looty</h2>
+			<p style={{ color: '#7b1fa2', fontSize: '1.1rem', marginBottom: '1rem' }}>
+				Welcome to Bandella Looty! This is a demo homepage for a dropshipping and content creation site. All products and images are placeholders. Explore the sections below for examples.
+			</p>
+			<ul style={{ color: '#ad1457', fontSize: '1rem', marginLeft: '1.5rem' }}>
+				<li>Example products</li>
+				<li>Coloring books</li>
+				<li>Creator content</li>
+				<li>Modern branding</li>
+			</ul>
+		</section>
+	);
 }
+
+export default function App() {
+	const [page, setPage] = useState('home');
+	const backgroundUrl = '/background.jpg';
+	const products = [
+						// Example products
+						{
+							title: 'Example Product 1',
+							description: 'This is a placeholder product description.',
+							price: '$19.99',
+							image: 'https://images.unsplash.com/photo-1516594918316-4f1c8a0b6e23?q=80&w=400&auto=format&fit=crop',
+							imageAlt: 'Example product 1 on soft pink background'
+						},
+						{
+							title: 'Example Product 2',
+							description: 'Another example product for display.',
+							price: '$24.99',
+							image: 'https://images.unsplash.com/photo-1520975910241-5f63b8b6d7b8?q=80&w=400&auto=format&fit=crop',
+							imageAlt: 'Example product 2 styled product shot'
+						},
+						{
+							title: 'Example Product 3',
+							description: 'Sample product with placeholder image.',
+							price: '$14.99',
+							image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400&auto=format&fit=crop',
+							imageAlt: 'Stylish sample product on a white backdrop'
+						},
+						// Full-length, funny & cool coloring books for adult women
+						{
+							title: 'Velvet Vixen Lace Set',
+							description: 'Luxurious velvet and lace bralette + panty set — classic romantic vibes with a sultry edge. A playful twist with comic-strip-inspired trims for everyday confidence.',
+							price: '$49.99',
+							category: 'lingerie',
+							image: 'https://images.unsplash.com/photo-1520975910241-5f63b8b6d7b8?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Velvet vixen lace bralette set on display'
+						},
+						{
+							title: 'Silk Slip Nightdress',
+							description: 'Silky, flowing slip for bedtime lounging and romantic evenings. Features a whimsical, comic-strip-inspired trim to make nights fun and bold.',
+							price: '$39.99',
+							category: 'nightwear',
+							image: 'https://images.unsplash.com/photo-1503342452485-86f7b8a9f3a7?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Silk slip nightdress hanging by a window'
+						},
+						{
+							title: 'Classic Lace Corset',
+							description: 'Structured corset with delicate lace for timeless silhouettes and dramatic curves.',
+							price: '$79.99',
+							category: 'lingerie',
+							image: 'https://images.unsplash.com/photo-1520975910241-5f63b8b6d7b8?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Classic lace corset on mannequin'
+						},
+						{
+							title: 'Sheer Stockings Set',
+							description: 'Four-pack sheer stockings in nude and black — a must-have wardrobe staple.',
+							price: '$19.99',
+							category: 'accessories',
+							image: 'https://images.unsplash.com/photo-1520975910241-5f63b8b6d7b8?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Sheer stockings set in nude and black'
+						},
+						{
+							title: 'Playful Ruffle Babydoll',
+							description: 'Lightweight babydoll with playful ruffles — sweet, flirty, and fun.',
+							price: '$29.99',
+							category: 'lingerie',
+							image: 'https://images.unsplash.com/photo-1516594918316-4f1c8a0b6e23?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Playful ruffle babydoll in pastel colors'
+						},
+						{
+							title: 'Satin Robe with Pockets',
+							description: 'Comfortable satin robe that feels like a hug — ideal for mornings and relaxed evenings.',
+							price: '$34.99',
+							category: 'loungewear',
+							image: 'https://images.unsplash.com/photo-1503342452485-86f7b8a9f3a7?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Satin robe with pockets displayed'
+						},
+						{
+							title: 'Boudoir Teddy',
+							description: 'One-piece teddy with a daring neckline for special nights.',
+							price: '$54.99',
+							category: 'lingerie',
+							image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Boudoir teddy with lace detail'
+						},
+						{
+							title: 'Signature Bodysuit',
+							description: 'Seamless bodysuit with supportive structure and modern design.',
+							price: '$44.99',
+							category: 'bodysuit',
+							image: 'https://images.unsplash.com/photo-1520975910241-5f63b8b6d7b8?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Signature seamless bodysuit modern design'
+						},
+						{
+							title: 'Poolside Swim Cover-Up',
+							description: 'Chic swim cover-up that transitions to a brunch outfit with ease.',
+							price: '$34.99',
+							category: 'swimwear',
+							image: 'https://images.unsplash.com/photo-1503342452485-86f7b8a9f3a7?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Poolside swim cover-up casual chic'
+						},
+						{
+							title: 'Luxe Bralette Trio',
+							description: 'Bralette bundle with three colors for everyday confidence and comfort.',
+							price: '$59.99',
+							category: 'lingerie',
+							image: 'https://images.unsplash.com/photo-1516594918316-4f1c8a0b6e23?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Luxe bralette trio neatly folded'
+						},
+						{
+							title: 'Courtsey Satin Camisole',
+							description: 'Simple and elegant camisole for layering or sleep.',
+							price: '$24.99',
+							category: 'casual',
+							image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop',
+							imageAlt: 'Courtsey satin camisole closeup'
+						},
+						{
+							title: 'Super Silly Selfies',
+							description: `A 24-page coloring book packed with quirky girls making the silliest faces!\n\nJokes inside:\n- Why did the girl bring a ladder to the bar? To reach the high spirits!\n- What do you call a selfie with a cat? A purr-trait!\n- Why did she color outside the lines? Because she’s a rebel with a cause!`,
+							pages: 24,
+							mood: 'playful',
+							jokes: [
+								'Why did the girl bring a ladder to the bar? To reach the high spirits!',
+								'What do you call a selfie with a cat? A purr-trait!',
+								'Why did she color outside the lines? Because she’s a rebel with a cause!'
+							],
+							samplePages: [
+								'Page 1: Girl with silly sunglasses',
+								'Page 7: Over-exaggerated pout with sparkling stars',
+								'Page 18: Puppy photobomb selfie' 
+							],
+							price: '$12.99',
+							image: 'https://api.dicebear.com/7.x/adventurer/svg?seed=FunnyFace1'
+						},
+						{
+							title: 'Cool Girls on Wheels',
+							description: `20 pages of skateboards, rollerblades, and wild hair!\n\nJokes inside:\n- What do you call a girl who skates on ice cream? A sundae driver!\n- Why did the rollerblader bring a pencil? To draw attention!\n- How do you know she’s cool? She’s got wheels and deals!`,
+							pages: 20,
+							mood: 'rebellious',
+							jokes: [
+								'What do you call a girl who skates on ice cream? A sundae driver!',
+								'Why did the rollerblader bring a pencil? To draw attention!',
+								'How do you know she’s cool? She’s got wheels and deals!'
+							],
+							samplePages: [
+								'Page 2: Skater girl mid-grind',
+								'Page 10: Roller derby poster',
+								'Page 18: Neon-lit night skate' 
+							],
+							price: '$12.99',
+							image: 'https://api.dicebear.com/7.x/adventurer/svg?seed=CoolSkaterGirl'
+						},
+						{
 							title: 'Joke Queens',
 							description: `A 22-page laugh-fest with the queens of comedy!\n\nJokes inside:\n- Why did the girl sit on the clock? She wanted to be on time!\n- What’s a queen’s favorite color? Royal blue!\n- Why did she bring a ladder to the comedy club? For the stand-up!`,
 							pages: 22,
@@ -211,15 +336,8 @@ export default function App(){
 											<Route path="/suppliers" element={<Suppliers />} />
 											<Route path="/about" element={<About />} />
 											<Route path="/coloring-books" element={<ColoringBooks books={products.filter(p => p.description && p.description.includes('page'))} />} />
-											{/* Product and category routes */}
-											<Route path="/products" element={<Products products={products} />} />
-											<Route path="/clothing" element={<Clothing />} />
-											<Route path="/events" element={<Events />} />
-											<Route path="/posters" element={<Posters />} />
-											<Route path="/images" element={<Images />} />
-											<Route path="/print-on-demand" element={<PrintOnDemand />} />
-											<Route path="/shipping" element={<Shipping />} />
-											<Route path="/checkout" element={<Checkout />} />
+											{/* Placeholder for Products page */}
+											<Route path="/products" element={<div><h2>Products</h2><p>Product catalogue coming soon.</p></div>} />
 										</Routes>
 									</main>
 									<footer className="footer-dark py-3 mt-4">

@@ -9,8 +9,7 @@
     "react-router-dom": "^7.10.1",
     "vite": "^4.0.0",
     "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
-    "@sendgrid/mail": "^7.9.0"
+    "bootstrap-icons": "^1.11.3"
   },
   "scripts": {
     "dev": "vite",

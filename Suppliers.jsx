@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SupplierForm from './SupplierForm';
+import SupplierForm from '../components/SupplierForm';
 
 const SAMPLE_SUPPLIERS = [
   { id: 'mixam', name: 'Mixam', type: 'Printing', website: 'https://mixam.com', contact: 'team@mixam.com', notes: 'Good for short-to-medium print runs and booklets', moq: 25, status: 'prospecting' },
