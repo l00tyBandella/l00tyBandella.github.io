@@ -17,16 +17,9 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="mainNav">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
             <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/products">Products</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/clothing">Clothing</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/posters">Posters</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/images">Images</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/coloring-books">Coloring Books</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/events">Events</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/print-on-demand">Print On Demand</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/shipping">Shipping</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/products">Our Products</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/checkout">Checkout</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/cart">Cart {totalCount ? `(${totalCount})` : ''}</Link></li>
             <li className="nav-item ms-3">
               <button className="btn btn-sm btn-outline-light" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={theme === 'dark'}>

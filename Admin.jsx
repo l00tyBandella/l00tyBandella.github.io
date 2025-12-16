@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import products from './productsData';
+import Suppliers from './Suppliers';
+import PrintOnDemand from './PrintOnDemand';
+import Shipping from './Shipping';
 
 function download(filename, text){
   const blob = new Blob([text], { type: 'text/csv' });
@@ -12,6 +15,7 @@ export default function Admin(){
   const [providerMap, setProviderMap] = useState(() => {
     try{ return JSON.parse(localStorage.getItem('providerMap') || '{}'); }catch(e){ return {}; }
   });
+  const [adminTab, setAdminTab] = useState('orders');
 
   useEffect(()=>{
     try{ const o = JSON.parse(localStorage.getItem('orders') || '[]'); setOrderList(o); }catch(e){ setOrderList([]); }
@@ -51,7 +55,39 @@ export default function Admin(){
 
   return (
     <div className="container">
-      <h2 style={{ color: 'var(--primary)' }}>Admin — Orders & Products</h2>
+      <h2 style={{ color: 'var(--primary)' }}>Admin Control Panel</h2>
+      
+      {/* Admin Navigation Tabs */}
+      <div className="btn-group mb-4" role="tablist">
+        <button 
+          className={`btn ${adminTab === 'orders' ? 'btn-pink' : 'btn-outline-secondary'}`}
+          onClick={() => setAdminTab('orders')}
+        >
+          Orders & Products
+        </button>
+        <button 
+          className={`btn ${adminTab === 'suppliers' ? 'btn-pink' : 'btn-outline-secondary'}`}
+          onClick={() => setAdminTab('suppliers')}
+        >
+          Suppliers
+        </button>
+        <button 
+          className={`btn ${adminTab === 'shipping' ? 'btn-pink' : 'btn-outline-secondary'}`}
+          onClick={() => setAdminTab('shipping')}
+        >
+          Shipping
+        </button>
+        <button 
+          className={`btn ${adminTab === 'pod' ? 'btn-pink' : 'btn-outline-secondary'}`}
+          onClick={() => setAdminTab('pod')}
+        >
+          Print On Demand
+        </button>
+      </div>
+      
+      {/* Tab Content */}
+      {adminTab === 'orders' && (
+        <div>
 
       <section className="mb-4">
         <h4>Orders</h4>
@@ -105,6 +141,12 @@ export default function Admin(){
           ))}
         </div>
       </section>
+        </div>
+      )}
+      
+      {adminTab === 'suppliers' && <Suppliers />}
+      {adminTab === 'shipping' && <Shipping />}
+      {adminTab === 'pod' && <PrintOnDemand />}
     </div>
   );
 }

@@ -1,3 +1,40 @@
+
+// ============================================================================
+// CUSTOMIZE THESE PRODUCTS FOR YOUR STORE
+// ============================================================================
+// 
+// This is your product data. Replace these products with your own.
+//
+// STRUCTURE FOR EACH PRODUCT:
+// {
+//   title: "Product Name",              // What it's called
+//   description: "Long description",    // What it does (can be multi-line)
+//   price: "$29.99",                    // Price (with $ sign)
+//   category: "lingerie",               // Category (e.g., "clothing", "books")
+//   image: "https://example.com/img.jpg",  // Image URL (must be https://)
+//   imageAlt: "Alt text"                // Description for accessibility
+// }
+//
+// TO ADD YOUR OWN PRODUCTS:
+// 1. Replace product title with your product name
+// 2. Update description to explain what it is
+// 3. Set price with $ sign
+// 4. Choose a category
+// 5. Find an image URL online and paste it here
+// 6. Write a short alt text for the image
+//
+// EXAMPLE OF YOUR OWN PRODUCT:
+// {
+//   title: "My Awesome T-Shirt",
+//   description: "High quality cotton t-shirt in multiple colors",
+//   price: "$24.99",
+//   category: "clothing",
+//   image: "https://example.com/my-shirt.jpg",
+//   imageAlt: "Blue t-shirt on a model"
+// }
+//
+// ============================================================================
+
 const products = [
   {
     title: 'Velvet Vixen Lace Set',
