@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ColoringBooks from './ColoringBooks';
-import Suppliers from './Suppliers';
 import Navbar from './Navbar';
 import HeroBanner from './HeroBanner';
 import FeaturedProductsCarousel from './FeaturedProductsCarousel';
@@ -11,14 +10,11 @@ import Testimonials from './Testimonials';
 import Products from './Products';
 import Cart from './Cart';
 import products from './productsData';
-import Events from './Events';
 import Clothing from './Clothing';
-import Posters from './Posters';
-import Images from './Images';
-import PrintOnDemand from './PrintOnDemand';
-import Shipping from './Shipping';
 import Checkout from './Checkout';
 import Admin from './Admin';
+import { useAuth } from './AuthContext';
+import Login from './Login';
 
 function About(){
 	return (
@@ -33,6 +29,11 @@ function About(){
 
 export default function App(){
 	const backgroundUrl = '/background.jpg';
+	const { user } = useAuth();
+
+	if (!user) {
+		return <Login onLoginSuccess={() => window.location.reload()} />;
+	}
 
 	return (
 		<Router>
@@ -50,16 +51,10 @@ export default function App(){
 									<Testimonials />
 								</>
 							} />
-							<Route path="/suppliers" element={<Suppliers />} />
 							<Route path="/about" element={<About />} />
 							<Route path="/coloring-books" element={<ColoringBooks books={products.filter(p => p.pages)} />} />
 							<Route path="/products" element={<Products products={products} />} />
 							<Route path="/clothing" element={<Clothing />} />
-							<Route path="/events" element={<Events />} />
-							<Route path="/posters" element={<Posters />} />
-							<Route path="/images" element={<Images />} />
-							<Route path="/print-on-demand" element={<PrintOnDemand />} />
-							<Route path="/shipping" element={<Shipping />} />
 							<Route path="/checkout" element={<Checkout />} />
 							<Route path="/admin" element={<Admin />} />
 							<Route path="/cart" element={<Cart />} />
@@ -81,9 +76,6 @@ export default function App(){
 		</Router>
 	);
 }
-							title: 'Joke Queens',
-							description: `A 22-page laugh-fest with the queens of comedy!\n\nJokes inside:\n- Why did the girl sit on the clock? She wanted to be on time!\n- What’s a queen’s favorite color? Royal blue!\n- Why did she bring a ladder to the comedy club? For the stand-up!`,
-							pages: 22,
 							mood: 'comedian',
 							jokes: [
 								'Why did the girl sit on the clock? She wanted to be on time!',

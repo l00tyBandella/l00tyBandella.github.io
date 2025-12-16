@@ -2,3 +2,22 @@ node_modules/
 dist/
 .env
 .DS_Store
+
+================================================================================
+EMAIL_COMMANDS.txt
+================================================================================
+
+This file is referenced from readme.txt. It contains complete instructions for 
+using email commands to control your store.
+
+SEE EMAIL_COMMANDS.txt FILE FOR FULL INSTRUCTIONS
+
+Key Commands:
+- GET products, GET orders, GET stats (retrieve info)
+- PUSH products, UPDATE storename, UPDATE payment-link (update store)
+- MARK shipped (manage orders)
+
+Step-by-step examples show EXACTLY how to use each command.
+Common problems section covers troubleshooting.
+
+All commands are email-based - just send to yourself!
